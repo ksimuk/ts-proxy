@@ -1,10 +1,12 @@
 'use strict';
 
 var http = require('http');
+var iniparser = require('iniparser');
+var querystring = require('querystring');
+
 var config = require('./config');
 var stream = require('./lib/stream');
 var playlist = require('./lib/playlist');
-var iniparser = require('iniparser');
 
 var cfgPath = process.argv[3] || './config.ini';
 
@@ -22,8 +24,12 @@ function start() {
 		var parts = pathname.split('/');
 		console.log(parts);
 		if (parts.length > 1 && parts[1] === 'stream') {
-			stream.attach(req, res, parts[2]);
-			return;
+			var channelName = querystring.unescape(parts[2]);
+			var streamId = playlist.getChannel(channelName);
+			if (streamId) {
+				stream.attach(req, res, streamId);
+				return;
+			}
 		}
 
 		// not found handle
