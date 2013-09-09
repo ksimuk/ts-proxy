@@ -16,6 +16,7 @@ function start() {
 		var pathname = req.url;
 
 		if (pathname === '/playlist') {
+			//todo channel filtering support
 			req.setEncoding('utf8');
 			playlist.request(res);
 			return;
