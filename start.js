@@ -8,11 +8,6 @@ var iniparser = require('iniparser');
 
 var cfgPath = process.argv[3] || './config.ini';
 
-iniparser.parse(cfgPath, function (err, data) {
-	config.set(data);
-	start();
-});
-
 function start() {
 	playlist.start();
 	http.createServer(function (req, res) {
@@ -41,3 +36,8 @@ function start() {
 
 	console.log('Server running at ' + config.local_domain);
 }
+
+iniparser.parse(cfgPath, function (err, data) {
+	config.set(data);
+	start();
+});

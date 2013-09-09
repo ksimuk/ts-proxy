@@ -12,5 +12,5 @@ logs
 results
 node_modules
 config.ini
-
+.tern-port
 npm-debug.log
