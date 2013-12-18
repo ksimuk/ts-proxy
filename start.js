@@ -39,7 +39,7 @@ function start() {
 		});
 		res.end('NotFound\n');
 
-	}).listen(config.port, '0.0.0.0');
+	}).listen('18080', '0.0.0.0');
 
 	console.log('Server running at ' + config.local_domain);
 }
